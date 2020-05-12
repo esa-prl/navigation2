@@ -23,8 +23,6 @@ from launch.substitutions import LaunchConfiguration
 
 from nav2_common.launch import Node
 
-namespace_ = 'marta'
-
 def generate_launch_description():
     # Get the launch directory
     bringup_dir = get_package_share_directory('nav2_bringup')
