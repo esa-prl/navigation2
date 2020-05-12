@@ -91,6 +91,7 @@ def generate_launch_description():
 
         Node(
             package='nav2_map_server',
+            node_namespace=namespace,
             node_executable='map_server',
             node_name='map_server',
             output='screen',
@@ -98,22 +99,23 @@ def generate_launch_description():
             use_remappings=IfCondition(use_remappings),
             remappings=remappings),
 
-        Node(
-            package='nav2_amcl',
-            node_executable='amcl',
-            node_name='amcl',
-            output='screen',
-            parameters=[configured_params],
-            use_remappings=IfCondition(use_remappings),
-            remappings=remappings),
+        # Node(
+        #     package='nav2_amcl',
+        #     node_executable='amcl',
+        #     node_name='amcl',
+        #     output='screen',
+        #     parameters=[configured_params],
+        #     use_remappings=IfCondition(use_remappings),
+        #     remappings=remappings),
 
         Node(
             condition=IfCondition(use_lifecycle_mgr),
             package='nav2_lifecycle_manager',
+            node_namespace=namespace,
             node_executable='lifecycle_manager',
             node_name='lifecycle_manager_localization',
             output='screen',
             parameters=[{'use_sim_time': use_sim_time},
                         {'autostart': autostart},
-                        {'node_names': ['map_server', 'amcl']}])
+                        {'node_names': ['map_server']}])
     ])

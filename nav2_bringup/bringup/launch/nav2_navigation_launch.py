@@ -101,6 +101,7 @@ def generate_launch_description():
         Node(
             package='nav2_controller',
             node_executable='controller_server',
+            node_namespace=namespace,
             output='screen',
             parameters=[configured_params],
             use_remappings=IfCondition(use_remappings),
@@ -110,6 +111,7 @@ def generate_launch_description():
             package='nav2_planner',
             node_executable='planner_server',
             node_name='planner_server',
+            node_namespace=namespace,
             output='screen',
             parameters=[configured_params],
             use_remappings=IfCondition(use_remappings),
@@ -118,6 +120,7 @@ def generate_launch_description():
         Node(
             package='nav2_recoveries',
             node_executable='recoveries_server',
+            node_namespace=namespace,
             node_name='recoveries_server',
             output='screen',
             parameters=[{'use_sim_time': use_sim_time}],
@@ -126,6 +129,7 @@ def generate_launch_description():
 
         Node(
             package='nav2_bt_navigator',
+            node_namespace=namespace,
             node_executable='bt_navigator',
             node_name='bt_navigator',
             output='screen',
@@ -135,6 +139,7 @@ def generate_launch_description():
 
         Node(
             package='nav2_waypoint_follower',
+            node_namespace=namespace,
             node_executable='waypoint_follower',
             node_name='waypoint_follower',
             output='screen',
@@ -145,6 +150,7 @@ def generate_launch_description():
         Node(
             condition=IfCondition(use_lifecycle_mgr),
             package='nav2_lifecycle_manager',
+            node_namespace=namespace,
             node_executable='lifecycle_manager',
             node_name='lifecycle_manager_navigation',
             output='screen',

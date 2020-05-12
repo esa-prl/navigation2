@@ -23,6 +23,7 @@ from launch.substitutions import LaunchConfiguration
 
 from nav2_common.launch import Node
 
+namespace_ = 'marta'
 
 def generate_launch_description():
     # Get the launch directory
@@ -43,12 +44,13 @@ def generate_launch_description():
 
     declare_namespace_cmd = DeclareLaunchArgument(
         'namespace',
-        default_value='',
+        default_value='blajh',
         description='Top-level namespace')
 
     # Declare the launch arguments
     declare_map_yaml_cmd = DeclareLaunchArgument(
         'map',
+        default_value=os.path.join(bringup_dir, 'maps', 'turtlebot3_world.yaml'),
         description='Full path to map yaml file to load')
 
     declare_use_sim_time_cmd = DeclareLaunchArgument(
@@ -100,6 +102,7 @@ def generate_launch_description():
 
     start_lifecycle_manager_cmd = Node(
         package='nav2_lifecycle_manager',
+        node_namespace=namespace,
         node_executable='lifecycle_manager',
         node_name='lifecycle_manager',
         output='screen',
