@@ -44,7 +44,7 @@ def generate_launch_description():
 
     declare_namespace_cmd = DeclareLaunchArgument(
         'namespace',
-        default_value='blajh',
+        default_value='',
         description='Top-level namespace')
 
     # Declare the launch arguments
@@ -109,7 +109,7 @@ def generate_launch_description():
         parameters=[{'use_sim_time': use_sim_time},
                     {'autostart': autostart},
                     {'node_names': ['map_server',
-                                    'amcl',
+                                    # 'amcl',
                                     'controller_server',
                                     'planner_server',
                                     'recoveries_server',
